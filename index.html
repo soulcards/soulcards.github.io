@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Гадания на Таро — София</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      background-color: #0d0d0d;
+      color: #f4f4f4;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 20px 80px;
+      text-align: center;
+      background-image: url('https://cdn.steamstatic.com/steamcommunity/public/images/items/447120/f173d53b9c696240fba8c45b6ec735f7bc1ce01a.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(20, 20, 20, 0.9));
+      z-index: 0;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%; height: 100%;
+      top: 0; left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    header h1 {
+      font-size: 56px;
+      color: #fff;
+      text-shadow: 0 0 12px #ffe066, 0 0 25px #ffb347, 0 0 50px #ffb347;
+      z-index: 2;
+      position: relative;
+    }
+
+    header p {
+      font-size: 24px;
+      text-shadow: 0 0 5px #ffffff88;
+      z-index: 2;
+      position: relative;
+    }
+
+    section {
+      max-width: 840px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 14px;
+      padding: 35px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      color: #ffdb70;
+      font-size: 30px;
+      text-shadow: 0 0 5px #ffdb70aa, 0 0 10px #ffb34788;
+    }
+
+    .toggle-services {
+      background: none;
+      border: none;
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffdb70;
+      text-shadow: 0 0 5px #ffdb70aa, 0 0 10px #ffb34788;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 20px;
+      transition: color 0.3s ease;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .toggle-services:hover {
+      color: #ffe28c;
+    }
+
+    .services-content {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .services-content.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .service-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffe28c;
+      margin-top: 20px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ffdb70;
+      font-size: 22px;
+      text-align: center;
+      margin: 40px auto;
+      max-width: 600px;
+      text-shadow: 0 0 5px #ffdb70aa;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffdb70;
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #ffdb70aa;
+    }
+
+    .btn:hover {
+      background: #ffe88a;
+      box-shadow: 0 0 15px #fff1b6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 15px;
+      color: #ccc;
+      background: radial-gradient(circle at center, #1a1a1a, #0d0d0d);
+      text-shadow: 0 0 5px #000;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 36px; }
+      header p { font-size: 18px; }
+      .btn { padding: 12px 20px; font-size: 14px; }
+    }
+
+    .faq-section {
+      font-family: 'Cormorant Garamond', serif;
+      color: #f4f4f4;
+    }
+
+    .faq-item {
+      border: 1px solid #333;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: linear-gradient(to right, #1a1a1a, #2a2a2a);
+      color: #ffdb70;
+      font-size: 24px;
+      padding: 16px 20px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Cormorant Garamond', serif;
+      position: relative;
+    }
+
+    .faq-question:hover {
+      background: #3a2a1a;
+      color: #ffe28c;
+      box-shadow: 0 0 10px rgba(255, 219, 112, 0.2);
+    }
+
+    .faq-answer {
+      background: #121212;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      color: #ddd;
+      font-size: 18px;
+      line-height: 1.5;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 16px 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="stars" id="stars-container"></div>
+    <h1 class="fade-in" style="animation-delay: 0s;">Гадания на Таро. *ੈ✩‧₊˚</h1>
+    <p class="fade-in" style="animation-delay: 0.5s;">С вами София — таролог с 5-летним опытом</p>
+  </header>
+
+  <section>
+    <div class="quote fade-in" style="animation-delay: 0.6s;">
+      Интуиция — это голос Души. Таро помогает его услышать.
+    </div>
+
+    <div class="card fade-in" style="animation-delay: 0.7s;">
+      <h2>Обо мне</h2>
+      <p>Меня зовут София. Каждая карта для меня — живой архетип, дух, зеркало души и вестник пути. Там, где разум молчит, Таро шепчет. Я не предсказываю будущее — я помогаю вам услышать свою интуицию, чтобы сотворить его сознательно. Между светом и тенью, страхом и надеждой, судьбой и свободой — я держу для вас пространство.</p>
+    </div>
+
+    <div class="card fade-in" style="animation-delay: 1s;">
+      <button class="toggle-services" type="button">Услуги (нажмите, чтобы узнать подробнее)</button>
+      <div class="services-content">
+        <div class="service-title">🔮 Индивидуальное гадание на Таро</div>
+        <p>Погружаемся в суть вашего запроса — отношения, путь, выбор, внутренние блоки. Я не даю прямых ответов, я показываю, где кроется правда и чего хочет ваша душа.</p>
+        <p><strong>Формат:</strong> онлайн/аудиосообщение/письменный расклад на 5–9 карт.</p>
+        <p><strong>Подходит для:</strong> анализа ситуации, понимания чувств и подсознательных мотивов.</p>
+
+        <div class="service-title">🌙 Глубинный расклад «Путь Души».</div>
+        <p>Для тех, кто стоит в точке выбора или чувствует, что нужно решиться. Этот расклад проясняет, в какой ситуации вы находитесь, каковы её корни, и какие сценарии развития открываются.</p>
+        <p><strong>Формат:</strong> письменный или голосовой анализ с пояснениями.</p>
+        <p><strong>Дополнительно:</strong> карта-наставник, ритуал для интеграции энергии арканов.</p>
+        <p><strong>Подходит для:</strong> духовного поиска, переходных периодов, кризисов роста.</p>
+
+        <div class="service-title">🔯 Совместимость и отношения</div>
+        <p>Расклад на динамику между вами и партнёром (нынешним или потенциальным). Что каждый из вас несёт в эту связь? Чего боится? Что возможно и что требуется сделать для проигрыша конкретного сценария пути с партнером?</p>
+        <p><strong>Формат:</strong> подробный разбор на 2–3 уровня (эмоции, действия, перспективы).</p>
+        <p><strong>Подходит для:</strong> понимания, укрепления или честного переосмысления отношений.</p>
+
+        <div class="service-title">🌌 Годовой расклад / расклад по месяцам</div>
+        <p>12 карт — 12 врат, через которые пройдёт ваша энергия. Что принесут сезоны? Где спрятаны ресурсы, а где — испытания?</p>
+        <p><strong>Подходит для:</strong> начала года, дня рождения или нового этапа.</p>
+        <p><strong>Формат:</strong> Голосовая коммуникация (сообщение\звонок).</p>
+        <p><strong>Бонус:</strong> аркан-гид и месяц силы.</p>
+
+        <div class="service-title">🧰 Экспресс-вопрос (1 тема — 3 карты)</div>
+        <p>Если у вас один конкретный вопрос и нужен быстрый ответ с прояснением.</p>
+        <p><strong>Формат:</strong> короткий аудио или текст.</p>
+        <p><strong>Подходит для:</strong> выбора, анализа текущей ситуации, «да/нет/почему».</p>
+      </div>
+    </div>
+
+    <div class="card fade-in" style="animation-delay: 1.3s;">
+      <h2>Как записаться</h2>
+      <p>Пишите мне в Telegram, и мы подберём удобное время для расклада:</p>
+      <a href="https://t.me/erohinaas" class="btn" target="_blank" rel="noopener noreferrer">Написать Софии в Telegram</a>
+    </div>
+
+    <div class="faq-section">
+      <div class="card">
+        <h2>Часто задаваемые вопросы</h2>
+
+        <div class="faq-item">
+          <button class="faq-question">Как проходит расклад?</button>
+          <div class="faq-answer">После записи я задам вам уточняющие вопросы, выполню расклад и отправлю подробное голосовое сообщение с интерпретацией.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Нужно ли рассказывать о себе?</button>
+          <div class="faq-answer">Нет, достаточно обозначить интересующую ситуацию или вопрос. Остальное покажут карты.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Как быстро я получу ответ?</button>
+          <div class="faq-answer">Обычно в течение 24 часов после оплаты и согласования запроса.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Можно ли задать уточняющие вопросы?</button>
+          <div class="faq-answer">Да, я всегда открыта к диалогу после расклада, если появятся дополнительные вопросы.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 София | Гадания на Таро
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const currentItem = button.parentElement;
+        const isActive = currentItem.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+
+        if (!isActive) {
+          currentItem.classList.add('active');
+        }
+      });
+    });
+
+    const starsContainer = document.getElementById('stars-container');
+    const starCount = 150;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      star.style.opacity = Math.random().toFixed(2);
+      starsContainer.appendChild(star);
+    }
+
+    const toggleBtn = document.querySelector('.toggle-services');
+    const servicesBlock = document.querySelector('.services-content');
+
+    toggleBtn.addEventListener('click', () => {
+      servicesBlock.classList.toggle('visible');
+    });
+  </script>
+</body>
+</html>

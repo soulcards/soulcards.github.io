@@ -258,9 +258,65 @@
       max-height: 300px;
       padding: 16px 20px;
     }
+
+    .age-modal {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.age-modal-content {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255, 219, 112, 0.3);
+  max-width: 90%;
+  width: 400px;
+  color: #ffdb70;
+  text-shadow: 0 0 5px #ffdb70aa;
+}
+
+.age-modal-content h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.age-modal-content p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+#accept-age {
+  background-color: #ffdb70;
+  color: #000;
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+#accept-age:hover {
+  background-color: #ffe28c;
+}
   </style>
 </head>
 <body>
+  <div id="age-modal" class="age-modal">
+  <div class="age-modal-content">
+    <h2>Внимание</h2>
+    <p>Этот сайт содержит эзотерический контент. Вам есть 18 лет?</p>
+    <button id="accept-age">Да, мне 18+</button>
+  </div>
+</div>
   <header>
     <div class="stars" id="stars-container"></div>
     <h1 class="fade-in" style="animation-delay: 0s;">Гадания на Таро. *ੈ✩‧₊˚</h1>
@@ -379,6 +435,21 @@
     toggleBtn.addEventListener('click', () => {
       servicesBlock.classList.toggle('visible');
     });
+
+    window.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('age-modal');
+  const acceptBtn = document.getElementById('accept-age');
+
+  acceptBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+});
+
+    <script>
+  document.getElementById('accept-age').addEventListener('click', function () {
+    document.getElementById('age-modal').style.display = 'none';
+  });
+</script>
   </script>
 </body>
 </html>
